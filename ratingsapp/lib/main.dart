@@ -63,43 +63,91 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(94, 95, 104, 0.097),/*94, 95, 104, 0.097*/
+                  backgroundColor: Color.fromRGBO(138, 138, 145, 0.788),/*94, 95, 104, 0.097*/
                   foregroundColor: Colors.black,
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 18),
+                  shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.circular(2),
+                  )
                 ),
-                child: const Text('Home'),
+                child: const Text('Home',
+                style: TextStyle(
+                  fontFamily: 'Verdana',
+                  fontSize: 18,
+                )
+                )
               ),
               const SizedBox(height: 20), // Space between buttons
               ElevatedButton(
                 onPressed: () {
-                  // Navigate to Login Page
+                  // Navigate to Home Page
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const LoginPage()), // Added code
                   );
                 },
-                child: const Text('Login'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromRGBO(112, 112, 119, 0.792),/*94, 95, 104, 0.097*/
+                  foregroundColor: Colors.black,
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 18),
+                  shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.circular(2),
+                  )
+                ),
+                child: const Text('Login',
+                style: TextStyle(
+                  fontFamily: 'Verdana',
+                  fontSize: 18,
+                )
+                )
               ),
               const SizedBox(height: 20), // Space between buttons
               ElevatedButton(
                 onPressed: () {
-                  // Navigate to Info Page
+                  // Navigate to Home Page
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const InfoPage()), // Added code
                   );
                 },
-                child: const Text('Info'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromRGBO(138, 138, 145, 0.788),/*94, 95, 104, 0.097*/
+                  foregroundColor: Colors.black,
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 18),
+                  shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.circular(2),
+                  )
+                ),
+                child: const Text('About',
+                style: TextStyle(
+                  fontFamily: 'Verdana',
+                  fontSize: 18,
+                )
+                )
               ),
               const SizedBox(height: 20), // Space between buttons
               ElevatedButton(
                 onPressed: () {
-                  // Navigate to Share Page
+                  // Navigate to Home Page
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const SharePage()), // Added code
                   );
                 },
-                child: const Text('Share'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromRGBO(112, 112, 119, 0.792),/*94, 95, 104, 0.097*/
+                  foregroundColor: Colors.black,
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 18),
+                  shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.circular(2),
+                  )
+                ),
+                child: const Text('Share',
+                style: TextStyle(
+                  fontFamily: 'Verdana',
+                  fontSize: 18,
+                )
+                )
               ),
               ],
             ),      
