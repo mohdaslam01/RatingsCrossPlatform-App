@@ -15,10 +15,24 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Ratings App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        // colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 50, 50, 50)),
+        colorScheme: const ColorScheme(
+      brightness: Brightness.light,
+      primary: Color.fromARGB(255, 47, 45, 45), // Dark gray
+      onPrimary: Color.fromARGB(255, 0, 0, 0), // White text/icons on primary
+      secondary: Color.fromARGB(255, 0, 0, 0), // Medium gray
+      onSecondary: Color.fromARGB(255, 0, 0, 0), // White text/icons on secondary
+      error: Color.fromARGB(255, 0, 0, 0), // Default error color
+      onError: Color.fromARGB(255, 0, 0, 0), // White text/icons on background
+      surface: Color.fromARGB(255, 0, 0, 0), // Very dark gray for surfaces
+      onSurface: Color.fromARGB(255, 0, 0, 0), // White text/icons on surfaces
+    ),
+        appBarTheme: const AppBarTheme(
+          foregroundColor: Color.fromRGBO(28, 53, 239, 1),
+        ),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Ratings'),
+      home: const MyHomePage(title: 'Ratings ∞'),
     );
   }
 }
