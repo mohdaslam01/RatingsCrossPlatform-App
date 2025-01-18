@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ratingsapp/home.dart';
-import 'home.dart';
-import 'login.dart';
-import 'info.dart';
-import 'share.dart';
+import 'package:ratingsapp/login.dart';
+import 'package:ratingsapp/info.dart';
+import 'package:ratingsapp/share.dart';
 
 void main() {
   runApp(const MyApp());
@@ -72,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 child: const Text('Home',
                 style: TextStyle(
-                  fontFamily: 'Verdana',
+                  fontFamily: 'Roboto',
                   fontSize: 18,
                 )
                 )
@@ -120,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 child: const Text('About',
                 style: TextStyle(
-                  fontFamily: 'Verdana',
+                  fontFamily: 'Roboto',
                   fontSize: 18,
                 )
                 )
