@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1050031108337",
+    "project_id": "ratings-d9c72",
+    "storage_bucket": "ratings-d9c72.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050031108337:android:3c5cb3fefdb752816ab950",
+        "android_client_info": {
+          "package_name": "com.example.ratingsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1050031108337-0vnjaeap87eib4toe01a8q977dro1j02.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG2RWBDyGUf-ijTINJ839lqb4gsxE7js0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1050031108337-0vnjaeap87eib4toe01a8q977dro1j02.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
