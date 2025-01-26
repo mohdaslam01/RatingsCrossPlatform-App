@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:ratingsapp/home.dart';
+import 'package:ratingsapp/main.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -38,7 +40,15 @@ class _LoginPageState extends State<LoginPage> {
       child: SignInButton(Buttons.Google, text: "Sign up with Google", onPressed: _handleGoogleSignIn/*(){}*/),));
   }
   Widget _userInfo(){
-    return SizedBox();
+    return SizedBox(child: ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyApp()),
+        );
+      },
+      child: Text('Go to HomePage'),
+    ),);
   }
   void _handleGoogleSignIn(){
     try{
