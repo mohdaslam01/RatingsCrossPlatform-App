@@ -6,6 +6,21 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:ratingsapp/home.dart';
 // ignore: unused_import
 import 'package:ratingsapp/main.dart';
+import 'package:flutter/services.dart';
+
+class UpperCaseTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    return newValue.copyWith(
+      text: newValue.text.toUpperCase(),
+      selection: newValue.selection,
+    );
+  }
+}
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -126,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('I am expert in'),
+        title: const Text('Professor details as'),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
@@ -147,9 +162,26 @@ class _LoginPageState extends State<LoginPage> {
           padding: const EdgeInsets.all(8.0),
           child: TextField(
             controller: itemController,
+            inputFormatters: [
+          UpperCaseTextFormatter(), // Enforces uppercase input
+          LengthLimitingTextInputFormatter(4), // Limits input to 5 characters
+          FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),//Only characters as Input - Input REstriction. 
+        ],
+            maxLength: 5,
+            style: const TextStyle(
+              color: Color.fromARGB(255, 255, 136, 136),
+              backgroundColor: Color.fromRGBO(22, 22, 22, 0.788),
+              ),
             decoration: const InputDecoration(
+              enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.grey), // Border color when not focused
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.blue), // Border color when focused
+      ),
               border: OutlineInputBorder(),
-              labelText: 'Enter an item',
+              labelText: 'University',
+              labelStyle: TextStyle(color: Color.fromRGBO(255, 72, 72, 1))
             ),
           ),
         ),
@@ -179,7 +211,7 @@ class _LoginPageState extends State<LoginPage> {
             if (itemController.text.isNotEmpty &&
                 phoneController.text.isNotEmpty &&
                 communicationController.text.isNotEmpty) {
-              _addItem(itemController.text, phoneController.text,
+              _addItem(itemController.text.toUpperCase(), phoneController.text,
                   communicationController.text);
               itemController.clear();
               phoneController.clear();
