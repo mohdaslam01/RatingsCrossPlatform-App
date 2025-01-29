@@ -41,6 +41,12 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController communicationController = TextEditingController();
   final TextEditingController searchController = TextEditingController();
+  final TextEditingController professorNameController = TextEditingController();
+  final TextEditingController classNameController = TextEditingController();
+  final TextEditingController professorEducationController = TextEditingController();
+  final TextEditingController professorAgeController = TextEditingController();
+  final TextEditingController professorMeetingController = TextEditingController();
+  final TextEditingController professorNotesController = TextEditingController();
 
   @override
   void initState() {
@@ -104,7 +110,8 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  Future<void> _addItem(String item, String phone, String communicationType) async {
+  Future<void> _addItem(String item, String phone, String communicationType, String professorName, String className, 
+  String professorEducation, String professorAge, String professorMeeting, String professorNotes,) async {
     if (_user == null) return;
     try {
       final newItem = {
@@ -167,18 +174,17 @@ class _LoginPageState extends State<LoginPage> {
           LengthLimitingTextInputFormatter(4), // Limits input to 5 characters
           FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),//Only characters as Input - Input REstriction. 
         ],
-            maxLength: 5,
             style: const TextStyle(
               color: Color.fromARGB(255, 255, 136, 136),
               backgroundColor: Color.fromRGBO(22, 22, 22, 0.788),
               ),
-            decoration: const InputDecoration(
+              decoration: const InputDecoration(
               enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.grey), // Border color when not focused
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.blue), // Border color when focused
-      ),
+                borderSide: BorderSide(color: Colors.grey), // Border color when not focused
+              ),
+              focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue), // Border color when focused
+            ),
               border: OutlineInputBorder(),
               labelText: 'University',
               labelStyle: TextStyle(color: Color.fromRGBO(255, 72, 72, 1))
@@ -210,12 +216,27 @@ class _LoginPageState extends State<LoginPage> {
           onPressed: () {
             if (itemController.text.isNotEmpty &&
                 phoneController.text.isNotEmpty &&
-                communicationController.text.isNotEmpty) {
+                communicationController.text.isNotEmpty && 
+                professorNameController.text.isNotEmpty && 
+                classNameController.text.isNotEmpty && 
+                professorEducationController.text.isNotEmpty && 
+                professorAgeController.text.isNotEmpty && 
+                professorMeetingController.text.isNotEmpty && 
+                professorNotesController.text.isNotEmpty) {
               _addItem(itemController.text.toUpperCase(), phoneController.text,
-                  communicationController.text);
+                  communicationController.text, professorNameController.text, 
+                  classNameController.text, professorEducationController.text, 
+                  professorAgeController.text, professorMeetingController.text,
+                  professorNotesController.text);
               itemController.clear();
               phoneController.clear();
               communicationController.clear();
+              professorNameController.clear();
+              classNameController.clear();
+              professorEducationController.clear();
+              professorAgeController.clear();
+              professorMeetingController.clear();
+              professorNotesController.clear();
             }
           },
           child: const Text('Add Item'),
