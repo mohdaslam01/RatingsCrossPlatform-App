@@ -175,7 +175,7 @@ class _LoginPageState extends State<LoginPage> {
           FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),//Only characters as Input - Input REstriction. 
         ],
             style: const TextStyle(
-              color: Color.fromARGB(255, 255, 136, 136),
+              color: Color.fromARGB(255, 255, 0, 0),
               backgroundColor: Color.fromRGBO(22, 22, 22, 0.788),
               ),
               decoration: const InputDecoration(
@@ -201,7 +201,7 @@ class _LoginPageState extends State<LoginPage> {
           FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z ]')),//Only characters as Input - Input REstriction. 
         ],
           style: const TextStyle(
-              color: Color.fromARGB(255, 255, 136, 136),
+              color: Color.fromARGB(255, 255, 0, 170),
               backgroundColor: Color.fromRGBO(22, 22, 22, 0.788),
               ),
             decoration: const InputDecoration(
@@ -227,7 +227,7 @@ class _LoginPageState extends State<LoginPage> {
           FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),//Only characters as Input - Input REstriction. 
         ],
             style: const TextStyle(
-              color: Color.fromARGB(255, 255, 136, 136),
+              color: Color.fromARGB(255, 170, 255, 0),
               backgroundColor: Color.fromRGBO(22, 22, 22, 0.788),
               ),
             decoration: const InputDecoration(
@@ -270,7 +270,7 @@ class _LoginPageState extends State<LoginPage> {
               professorNotesController.clear();*/
             }
           },
-          child: const Text('Add details', style: TextStyle(fontSize: 16, color: Colors.redAccent),),
+          child: const Text('Add details', style: TextStyle(fontSize: 16, color: Color.fromARGB(255, 0, 68, 255)),),
         ),
       ],
     );
