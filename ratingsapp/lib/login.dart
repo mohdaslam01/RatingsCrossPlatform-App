@@ -38,15 +38,15 @@ class _LoginPageState extends State<LoginPage> {
   List<Map<String, dynamic>> allItems = []; // Holds all users' items for search functionality
 
   final TextEditingController itemController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController communicationController = TextEditingController();
+  //final TextEditingController phoneController = TextEditingController();
+  //final TextEditingController communicationController = TextEditingController();
   final TextEditingController searchController = TextEditingController();
   final TextEditingController professorNameController = TextEditingController();
-  final TextEditingController classNameController = TextEditingController();
-  final TextEditingController professorEducationController = TextEditingController();
-  final TextEditingController professorAgeController = TextEditingController();
-  final TextEditingController professorMeetingController = TextEditingController();
-  final TextEditingController professorNotesController = TextEditingController();
+  final TextEditingController classCodeController = TextEditingController();
+  //final TextEditingController professorEducationController = TextEditingController();
+  //final TextEditingController professorAgeController = TextEditingController();
+  //final TextEditingController professorMeetingController = TextEditingController();
+  //final TextEditingController professorNotesController = TextEditingController();
 
   @override
   void initState() {
@@ -110,14 +110,14 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  Future<void> _addItem(String item, String phone, String communicationType, String professorName, String className, 
-  String professorEducation, String professorAge, String professorMeeting, String professorNotes,) async {
+  Future<void> _addItem(String item, String professorName, String classCode/*, String communicationType, String professorName, String className, 
+  String professorEducation, String professorAge, String professorMeeting, String professorNotes,*/) async {
     if (_user == null) return;
     try {
       final newItem = {
-        "item": item,
-        "phone": phone,
-        "communicationType": communicationType,
+        "universityCode": item,
+        "professorName": professorName,
+        "classCode": classCode,
       };
       setState(() {
         items.add(newItem);
@@ -194,52 +194,83 @@ class _LoginPageState extends State<LoginPage> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextField(
-            controller: phoneController,
+            controller: professorNameController,
+            inputFormatters: [
+          UpperCaseTextFormatter(), // Enforces uppercase input
+          LengthLimitingTextInputFormatter(26), // Limits input to 5 characters
+          FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z ]')),//Only characters as Input - Input REstriction. 
+        ],
+          style: const TextStyle(
+              color: Color.fromARGB(255, 255, 136, 136),
+              backgroundColor: Color.fromRGBO(22, 22, 22, 0.788),
+              ),
             decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Enter phone number',
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey), // Border color when not focused
+              ),
+              focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue), // Border color when focused
             ),
-            keyboardType: TextInputType.phone,
+              border: OutlineInputBorder(),
+              labelText: 'Professor Name',
+              labelStyle: TextStyle(color: Color.fromRGBO(234, 72, 255, 1))
+            ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextField(
-            controller: communicationController,
+            controller: classCodeController,
+            inputFormatters: [
+          UpperCaseTextFormatter(), // Enforces uppercase input
+          LengthLimitingTextInputFormatter(8), // Limits input to 5 characters
+          FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),//Only characters as Input - Input REstriction. 
+        ],
+            style: const TextStyle(
+              color: Color.fromARGB(255, 255, 136, 136),
+              backgroundColor: Color.fromRGBO(22, 22, 22, 0.788),
+              ),
             decoration: const InputDecoration(
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey), // Border color when not focused
+              ),
+              focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue), // Border color when focused
+            ),
               border: OutlineInputBorder(),
-              labelText: 'Enter communication type',
+              labelText: 'Class Code',
+              labelStyle: TextStyle(color: Color.fromRGBO(188, 255, 72, 1))
             ),
           ),
         ),
         ElevatedButton(
           onPressed: () {
             if (itemController.text.isNotEmpty &&
-                phoneController.text.isNotEmpty &&
-                communicationController.text.isNotEmpty && 
+                professorNameController.text.isNotEmpty &&
+                classCodeController.text.isNotEmpty/* && 
                 professorNameController.text.isNotEmpty && 
-                classNameController.text.isNotEmpty && 
+                classCodeController.text.isNotEmpty && 
                 professorEducationController.text.isNotEmpty && 
                 professorAgeController.text.isNotEmpty && 
                 professorMeetingController.text.isNotEmpty && 
-                professorNotesController.text.isNotEmpty) {
-              _addItem(itemController.text.toUpperCase(), phoneController.text,
-                  communicationController.text, professorNameController.text, 
-                  classNameController.text, professorEducationController.text, 
+                professorNotesController.text.isNotEmpty*/) {
+              _addItem(itemController.text.toUpperCase(), professorNameController.text,
+                  classCodeController.text, /*professorNameController.text, 
+                  classCodeController.text, professorEducationController.text, 
                   professorAgeController.text, professorMeetingController.text,
-                  professorNotesController.text);
+                  professorNotesController.text -- Future refeence*/);
               itemController.clear();
-              phoneController.clear();
-              communicationController.clear();
               professorNameController.clear();
-              classNameController.clear();
+              classCodeController.clear();
+              /*professorNameController.clear();
+              classCodeController.clear();
               professorEducationController.clear();
               professorAgeController.clear();
               professorMeetingController.clear();
-              professorNotesController.clear();
+              professorNotesController.clear();*/
             }
           },
-          child: const Text('Add Item'),
+          child: const Text('Add details', style: TextStyle(fontSize: 16, color: Colors.redAccent),),
         ),
       ],
     );
