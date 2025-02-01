@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       filteredItems = allItems
           .where((item) =>
-              item['item'].toString().toLowerCase().contains(query.toLowerCase()))
+              item['professorName'].toString().toLowerCase().contains(query.toLowerCase()))
           .toList();
     });
   }
@@ -62,6 +62,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
+              style: TextStyle(color: const Color.fromARGB(255, 255, 17, 0)),
               controller: searchController,
               onChanged: _filterItems,
               decoration: const InputDecoration(
@@ -92,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     final item = filteredItems[index];
                     return Card( // Adds a slight elevation effect
-                      color: Colors.white, // Change ListTile background color
+                      color: const Color.fromARGB(103, 76, 75, 75), // Change ListTile background color
                       child: ListTile(
                         title: Text(
                           '${item['professorName']}',
@@ -104,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                         subtitle: Text(
                           'Course: ${item['classCode']}\nUniversity: ${item['universityCode']}',
                           style: TextStyle(
-                            color: Colors.black54, // Change subtitle text color
+                            color: const Color.fromARGB(255, 0, 68, 255), // Change subtitle text color
                           ),
                         ),
                       ),
