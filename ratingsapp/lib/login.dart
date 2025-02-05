@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  Future<void> _addItem(String item, String professorName, String classCode/*, String communicationType, String professorName, String className, 
+  Future<void> _addItem(String item, String professorName, String classCode, int yesCount, int noCount/*, String communicationType, String professorName, String className, 
   String professorEducation, String professorAge, String professorMeeting, String professorNotes,*/) async {
     if (_user == null) return;
     try {
@@ -118,6 +118,8 @@ class _LoginPageState extends State<LoginPage> {
         "universityCode": item,
         "professorName": professorName,
         "classCode": classCode,
+        "yesCount" : yesCount,
+        "noCount" : noCount,
       };
       setState(() {
         items.add(newItem);
@@ -255,7 +257,7 @@ class _LoginPageState extends State<LoginPage> {
                 professorMeetingController.text.isNotEmpty && 
                 professorNotesController.text.isNotEmpty*/) {
               _addItem(itemController.text.toUpperCase(), professorNameController.text,
-                  classCodeController.text, /*professorNameController.text, 
+                  classCodeController.text, 0, 0 /*professorNameController.text, 
                   classCodeController.text, professorEducationController.text, 
                   professorAgeController.text, professorMeetingController.text,
                   professorNotesController.text -- Future refeence*/);

@@ -28,7 +28,16 @@ class _HomePageState extends State<HomePage> {
       for (var doc in querySnapshot.docs) {
         if (doc.data()['items'] != null) {
           List<dynamic> userItems = doc.data()['items'];
-          fetchedItems.addAll(userItems.cast<Map<String, dynamic>>());
+          for (var item in userItems) {
+            fetchedItems.add({
+              'id': item['id'], // Ensure each item has a unique identifier
+              'professorName': item['professorName'],
+              'classCode': item['classCode'],
+              'universityCode': item['universityCode'],
+              'yesCount': item['yesCount'] ?? 0,
+              'noCount': item['noCount'] ?? 0,
+            });
+          }
         }
       }
       setState(() {
@@ -36,7 +45,6 @@ class _HomePageState extends State<HomePage> {
         filteredItems = fetchedItems;
       });
     } catch (e) {
-      // ignore: avoid_print
       print('Error fetching items: $e');
     }
   }
@@ -52,14 +60,43 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void _handleYes(int index) {
-    // Handle the "Yes" button press for the item at the given index
-    print('Yes pressed for item $index');
+  void _handleYes(int index) async {
+    final item = filteredItems[index];
+    final newYesCount = item['yesCount'] + 1;
+
+    // Update the local state
+    setState(() {
+      filteredItems[index]['yesCount'] = newYesCount;
+    });
+
+    // Update Firestore
+    try {
+      await db.collection("users").doc(item['id']).update({
+        'yesCount': newYesCount,
+      });
+    } catch (e) {
+      print('Error updating yesCount: $e');
+    }
   }
 
-  void _handleNo(int index) {
-    // Handle the "No" button press for the item at the given index
-    print('No pressed for item $index');
+  void _handleNo(int index) async {
+    final item = filteredItems[index];
+    final newNoCount = item['noCount'] + 1;
+
+    // Update the local state
+    setState(() {
+      filteredItems[index]['noCount'] = newNoCount;
+    });
+
+    // Update Firestore
+    try {
+      await db.collection("users").doc(item['id']).update({
+        'noCount': newNoCount,
+      });
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error updating noCount: $e');
+    }
   }
 
   @override
@@ -119,19 +156,64 @@ class _HomePageState extends State<HomePage> {
                                 color: Color.fromARGB(255, 0, 68, 255),
                               ),
                             ),
-                            trailing: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                IconButton(
-                                  icon: const Icon(Icons.check, color: Color.fromARGB(255, 0, 255, 8)),
-                                  onPressed: () => _handleYes(index),
+                            trailing: SingleChildScrollView(
+                              child: Container(
+                                padding: const EdgeInsets.all(8.0), // Adds padding inside the container
+                                decoration: BoxDecoration(
+                                  color: const Color.fromARGB(255, 0, 0, 0), // Background color
+                                  borderRadius: BorderRadius.circular(8.0), // Rounded corners
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black26, // Soft shadow effect
+                                      blurRadius: 4.0,
+                                      offset: Offset(0, 2),
+                                    ),
+                                  ],
                                 ),
-                                IconButton(
-                                  icon: const Icon(Icons.close, color: Color.fromARGB(255, 255, 17, 0)),
-                                  onPressed: () => _handleNo(index),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        IconButton(
+                                          icon: const Icon(Icons.check, color: Color.fromARGB(255, 0, 255, 8)),
+                                          onPressed: () => _handleYes(index),
+                                        ),
+                                        IconButton(
+                                          icon: const Icon(Icons.close, color: Color.fromARGB(255, 255, 0, 0)),
+                                          onPressed: () => _handleNo(index),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          '${item['yesCount']}',
+                                          style: const TextStyle(
+                                            fontSize: 12, // Increased font size
+                                            fontWeight: FontWeight.bold, // Bold text
+                                            color: Color.fromARGB(255, 89, 255, 0), // Text color
+                                          ),
+                                        ),
+                                        const SizedBox(width: 40),
+                                        Text(
+                                          '${item['noCount']}',
+                                          style: const TextStyle(
+                                            fontSize: 12, // Increased font size
+                                            fontWeight: FontWeight.bold, // Bold text
+                                            color: Color.fromARGB(255, 255, 0, 0), // Text color
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
+
+
                           ),
                         );
                       },
