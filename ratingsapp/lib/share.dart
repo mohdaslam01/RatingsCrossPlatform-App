@@ -5,6 +5,14 @@ class SharePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(onPressed: () {
+            Navigator.pop(context);
+          }, icon: Icon(Icons.arrow_back),
+        ),
+      title: Text('Share'),
+      ),
+    );
   }
 }

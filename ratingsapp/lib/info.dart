@@ -5,6 +5,19 @@ class InfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Text('Our missions'),
+      ),
+      body: const Center(
+        child: Text('This is the Info Page'),
+      ),
+    );
   }
 }

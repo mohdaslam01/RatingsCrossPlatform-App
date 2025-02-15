@@ -82,6 +82,7 @@ class _HomePageState extends State<HomePage> {
             child: TextField(
               controller: searchController,
               onChanged: _filterItems,
+              style: TextStyle(color: const Color.fromARGB(255, 255, 17, 0)),
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Search items',
