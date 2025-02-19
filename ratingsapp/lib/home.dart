@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
       List<Map<String, dynamic>> fetchedItems = [];
       for (var doc in querySnapshot.docs) {
         var userItems = List<Map<String, dynamic>>.from(doc.data()['items'] ?? []);
+        // ignore: avoid_function_literals_in_foreach_calls
         userItems.forEach((item) {
           item['docId'] = doc.id; // Store document ID for reference
           fetchedItems.add(item);
@@ -37,6 +38,7 @@ class _HomePageState extends State<HomePage> {
         filteredItems = fetchedItems;
       });
     } catch (e) {
+      // ignore: avoid_print
       print('Error fetching items: $e');
     }
   }

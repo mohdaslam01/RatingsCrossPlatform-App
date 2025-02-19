@@ -5,13 +5,28 @@ class SharePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Define the aqua color
+    const Color aquaColor = Color.fromARGB(255, 255, 36, 36);
+
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () {
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
             Navigator.pop(context);
-          }, icon: Icon(Icons.arrow_back),
+          },
         ),
-      title: Text('Share'),
+        title: const Text('Share'),
+      ),
+      body: Center(
+        child: Text(
+          'Share with Your Classmates ',
+          style: TextStyle(
+            fontSize: 42,
+            fontWeight: FontWeight.bold,
+            color: aquaColor,
+          ),
+        ),
       ),
     );
   }
